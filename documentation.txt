@@ -1,0 +1,58 @@
+Name: kola ManojKumar
+project Name: MP3_TagReader_&_Editor
+Date: 29-12-2025
+ID no: 25027_012
+
+         "Documentation"
+
+>>Overview
+  •MP3 Tag Reader & Editor is a utility designed to view and modify metadata embedded within MP3 audio files.
+  •It provides an easy-to-use interface for accessing and updating ID3 metadata without affecting the actual audio content.
+  •The application supports ID3v2.x standards and operates directly on MP3 files using binary file processing.
+
+>>View Module
+  •The view functionality extracts and displays all available MP3 metadata in a well-organized and readable format.
+  •The system opens the MP3 file, detects the presence of an ID3 header, parses individual frames, and retrieves metadata fields such as:
+   Title
+   Artist
+   Album
+   Year
+   Genre
+   Comment
+   Track number
+
+>>Example usage:
+  •view_tags("sample.mp3")
+  •On successful execution, the system displays:
+
+>>ID3 version
+  Tag size
+  Available metadata fields and their values
+  If the MP3 file does not contain an ID3 tag, a clear message is shown:
+  “No ID3 tag found in sample.mp3”
+
+>>Edit Module
+
+  •The edit functionality enables safe and controlled modification of selected MP3 tag fields.
+  •User-provided values are validated before being written to ensure the integrity of the file.
+  •Only the relevant ID3 frames are updated, while the audio data remains untouched.
+  •The system enforces string length and encoding constraints based on the ID3 version in use.
+  •All updates are performed in memory first, and changes are written back to the file only after validation succeeds.
+  •For ID3v2.3 and ID3v2.4 tags, frame headers (ID, size, and flags) are updated correctly to maintain a valid tag structure.
+
+>>Example usage:
+  edit_tags("sample.mp3", { "TITLE": "New Title", "ARTIST": "New Artist" })
+
+>>On successful update:
+  A confirmation message is displayed along with the modified fields.
+
+>>On failure:
+  •A detailed error message is shown, including suggestions such as restoring from a backup.
+  Supported ID3 Frames.
+  TIT2 – Title
+  TPE1 – Artist
+  TALB – Album
+  TYER / TDRC – Year / Recording Time
+  TCON – Genre
+  COMM – Comment
+  TRCK – Track Numbe.
